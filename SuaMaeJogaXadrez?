@@ -1,0 +1,160 @@
+#include <iostream>
+#include <stdio.h>
+
+char pvez = 'P';
+
+
+typedef struct {
+	
+    char pekka;
+    
+} pekkas;
+
+
+void fDefinirPekka(int pecas[]);
+void fMostrarPekkas(int pecas[]);
+void fDefineTabuleiro(char Tabuleiro[8][8]);
+void fAlternarCor();
+void fMenu();
+
+
+int main() {
+	
+	int op = 1;
+    char Tabuleiro[8][8];
+    
+    int pecas[32];
+    
+    fDefinirPekka(pecas);
+    
+    
+    while(op != 0){
+    	
+  
+    	fMenu();
+    	scanf("%d", &op);
+    	
+    	switch(op)
+			{
+				case 0:
+					system("cls");
+					printf("Saindo...\n");
+					break;
+				case 1:
+					system("cls");
+					fDefineTabuleiro(Tabuleiro);
+					break;
+				case 2:
+					system("cls");
+					fMostrarPekkas(pecas);
+					break;
+				case 3:
+					break;
+				default:
+					system("cls");
+					printf("Opção invalida. Tente novamente.\n");
+			}
+		
+	}
+    
+    
+    return 0;
+}
+
+void fDefinirPekka(int pecas[]) {
+	
+    for (int i = 0; i < 32; i++) {
+    	
+        pecas[i] = 'C';
+        
+    }
+    
+}
+
+void fMostrarPekkas(int pecas[]) {
+	
+    for (int i = 0; i < 32; i++) {
+    	
+        printf(" %c \n", pecas[i]);
+        
+    }
+    
+}
+
+void fDefineTabuleiro(char Tabuleiro[8][8]) {
+	
+	
+	int x = 8;
+	
+	char cord = 'a';
+	
+		int ind =8;
+	
+    for (int i = 0; i < 8; i++) {
+    	
+    	printf("%d     ",x);
+    	
+    	x = x-1;
+    		
+    	fAlternarCor();
+    	
+        for (int j = 0; j < 8; j++) {
+        	
+            Tabuleiro[i][j] = cord;
+            
+            cord = cord + 1;
+            
+            fAlternarCor();
+            
+            printf("%c%d   ", Tabuleiro[i][j], ind);
+            
+        }
+         
+        ind = ind-1;
+		 
+        cord = cord - 8;
+        
+        printf("\n\n\n");
+		 
+    }
+    
+    printf("\n      ");
+    
+    for(char i = 'a'; i <= 'h'; i++){
+		
+		printf("%c    ",i);
+		
+	}
+	
+}
+
+
+void fAlternarCor() 
+{
+	if(pvez == 'P')
+	{
+		pvez = 'B';
+	}
+	else
+	{
+		pvez = 'P';
+	}
+}
+
+void fMenu(){
+	
+	printf("\n------------------------\n");	
+	printf(" 1 - Mostrar tabuleiro\n");
+	printf(" 2 - Mostrar pecas\n");
+	
+}
+
+
+
+
+//criar peças pra cada jogador
+//coloca-las no tabuleiro
+//definir seus movimentos
+//definir captura
+//definir cheque
+//definir lance invalido
